@@ -1,0 +1,15 @@
+# current dir
+/.inst
+/aclocal.m4
+/acinclude.m4
+/autom4te.cache
+/build-aux
+/compile
+/config.guess
+/config.status
+/config.log
+
+# general
+*.tar.gz
+Makefile
+Makefile.in

@@ -10,13 +10,16 @@ __cont_source_scripts()
 }
 
 
-# CONT_SOURCE_SCRIPTS HOOK [PROJECT]
-# ----------------------------------
-# Sources *.sh files in the following directories in this order:
-# /usr/share/cont-layer/PROJECT/HOOK/
-# /usr/share/cont-volume/PROJECT/HOOK/
-# The PROJECT argument is optional as it may be set globally by
-# $CONT_PROJECT environment variable.
+# CONT_SOURCE_HOOKS HOOKDIR [PROJECT]
+# -----------------------------------
+# Source '*.sh' files from the following directories (in this order):
+#   a. @contlayerhookdir@/PROJECT/HOOK/
+#   b. @contvolumehookdir@/PROJECT/HOOK/
+#
+# The PROJECT argument is optional because it may be set globally by
+# $CONT_PROJECT environment variable.  The need for PROJECT argument is
+# basically to push people to install script into theirs own directories,
+# which will allow easier multi-project containers maintenance.
 cont_source_hooks()
 {
     local i dir
@@ -64,13 +67,14 @@ cont_debug()  { __cont_dbg 1 "$*" ; }
 cont_debug2() { __cont_dbg 2 "$*" ; }
 cont_debug3() { __cont_dbg 3 "$*" ; }
 
+
 # SEMICOLON_SPLIT VAR
 # -------------------
-# Split the (single-line) string contents of variable VAR into list of strings,
-# each of those strings will be printed to standard output.  The ';' character
-# is used as separator.  You can use quadrigraph @.,@ for ';' character not
-# splitting the VAR (and use @&t@ to expand into empty string).  More info about
-# quadrigraphs may be found in autoconf info page.
+# Split the contents of string variable VAR into list of strings (on separate
+# line), each of those strings will be printed to standard output.  The ';' and
+# newline characters are used as split separators.  You can use quadrigraph @.,@
+# for ';' character not splitting the VAR (and use @&t@ to expand into empty
+# string).  More info about quadrigraphs may be found in autoconf info page.
 cont_semicolon_split()
 {
     eval echo "\$$1" \
@@ -157,6 +161,21 @@ cont_encode_env()
 }
 
 
+# CONT_STORE_ENV VARIABLES FILENAME
+# ---------------------------------
+# Create source-able script conditionally setting specified VARIABLES by
+# inheritting the values from current environment; Create the file on path
+# FILENAME.  Already existing variables will not be changed by sourcing the
+# resulting script.  The argument VARIABLES expects list of space separated
+# variable names.
+#
+# Usage:
+#   $ my_var=my_value
+#   $ my_var2="my value2"
+#   $ cont_store_env "my_var my_var2" ~/.my-environment
+#   $ cat ~/.my-environment
+#   : ${my_var=my_value}
+#   : ${my_var2=my\ value2}
 cont_store_env()
 {
     cont_debug "creating env file '$2'"

@@ -42,17 +42,6 @@ __cont_msg()
     echo "$*" >&2
 }
 
-cont_warn()
-{
-    __cont_msg "warn: $*"
-}
-
-cont_error()
-{
-    __cont_msg "error: $*"
-}
-
-: ${CONT_DEBUG=0}
 
 __cont_dbg()
 {
@@ -63,6 +52,9 @@ __cont_dbg()
     __cont_msg "debug_$lvl: $*"
 }
 
+
+cont_warn()   { __cont_msg "warn: $*" ; }
+cont_error()  { __cont_msg "error: $*"; }
 cont_debug()  { __cont_dbg 1 "$*" ; }
 cont_debug2() { __cont_dbg 2 "$*" ; }
 cont_debug3() { __cont_dbg 3 "$*" ; }

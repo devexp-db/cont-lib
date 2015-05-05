@@ -77,7 +77,10 @@ cont_debug3() { __cont_dbg 3 "$*" ; }
 # string).  More info about quadrigraphs may be found in autoconf info page.
 cont_semicolon_split()
 {
-    eval echo "\$$1" \
+    eval set -- "\"\$$1\""
+    test x = x"$1" && return 0
+
+    echo "$1" \
         | sed \
             -e 's/[[:space:]]*;[[:space:]]*/\n/g' \
         | sed \
@@ -123,13 +126,9 @@ cont_semicolon_split()
 #   semicolon=";" [additional data]
 cont_parser_simple_config()
 {
-    local config_var="$1"
+    local conf_var="$1"
     local callback="$2"
-    local value
     shift 2
-
-    eval "value=\$$config_var"
-    test -z "$value" && return 0
 
     while read line; do
         test -z "$line" && continue
@@ -144,13 +143,13 @@ cont_parser_simple_config()
         else
             cont_warn "wrong config: $line"
         fi
-    done < <(cont_semicolon_split value)
+    done < <(cont_semicolon_split "$conf_var")
 
     return 0
 }
 
 
-cont_encode_env()
+__cont_encode_env()
 {
     local i
     for i in $1
@@ -179,7 +178,7 @@ cont_encode_env()
 cont_store_env()
 {
     cont_debug "creating env file '$2'"
-    cont_encode_env "$1" > "$2" \
+    __cont_encode_env "$1" > "$2" \
         || cont_warn "can't store environment $1 into $2 file"
 }
 

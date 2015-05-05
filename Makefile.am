@@ -5,6 +5,7 @@ EXTRA_DIST =
 
 include bin/Makefile.inc
 
+include share/cont-docs/Makefile.inc
 include share/cont-layer/Makefile.inc
 include share/cont-lib/Makefile.inc
 include share/cont-lib/autoload/Makefile.inc

@@ -7,3 +7,4 @@
 ./usr/share/cont-lib/autoload/
 ./usr/share/cont-lib/autoload/README
 ./usr/share/cont-lib/cont-lib.sh
+./usr/share/cont-lib/parser-simple-config.sh

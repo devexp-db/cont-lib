@@ -9,6 +9,7 @@ include share/cont-layer/Makefile.inc
 include share/cont-lib/Makefile.inc
 include share/cont-lib/autoload/Makefile.inc
 include share/cont-volume/Makefile.inc
+include tests/Makefile.inc
 
 .PHONY: git-test-build
 git-test-build:

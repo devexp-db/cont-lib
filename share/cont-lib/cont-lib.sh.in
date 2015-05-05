@@ -83,6 +83,8 @@ cont_semicolon_split()
     echo "$1" \
         | sed \
             -e 's/[[:space:]]*;[[:space:]]*/\n/g' \
+            -e 's/^[[:space:]]*//g' \
+            -e 's/\([^\\]\)[[:space:]]*$/\1/g' \
         | sed \
             -e 's|@.,@|;|g' \
             -e 's|@&t@||g'

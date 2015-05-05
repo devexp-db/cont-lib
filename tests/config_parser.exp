@@ -1,0 +1,19 @@
+=== semicolon-split: list of variables ===
+a = 1
+b = 2
+c = 3
+d = 4
+e = 5
+d = no trailnig whitespace
+x = "having semicolon inside: ;"
+z = keep escaped trailing space\ 
+=== semicolon-split: empty-variable ===
+=== cont_parser_simple_config: callback test ===
+a = 1
+b = 2
+c = 3
+d = 4
+e = 5
+d = no trailnig whitespace
+x = "having semicolon inside: ;"
+z = keep escaped trailing space

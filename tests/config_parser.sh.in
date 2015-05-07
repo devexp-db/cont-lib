@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "@abs_top_srcdir@"/share/cont-lib/cont-lib.sh
+. "@abs_top_srcdir@"/share/cont-lib/parser-simple-config.sh
 
 info()
 {

@@ -1,0 +1,4 @@
+ATM, the testsuite is supposed to work like:
+
+    $ ./configure --prefix=`pwd`
+    $ make check

@@ -1,7 +1,7 @@
 bin_SCRIPTS =
 
 GENERATED_FILES =
-EXTRA_DIST =
+EXTRA_DIST = .inst-list
 
 include bin/Makefile.inc
 

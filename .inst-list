@@ -1,6 +1,6 @@
 --owner=root --group=root
-./usr/bin/cont-entry
-./usr/bin/cont-help
+./usr/bin/container-entrypoint
+./usr/bin/container-usage
 ./usr/share/cont-docs/
 ./usr/share/cont-docs/README
 ./usr/share/cont-volume/

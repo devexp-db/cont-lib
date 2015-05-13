@@ -1,7 +1,7 @@
-entry		= %D%/cont-entry
+entry		= %D%/container-entrypoint
 entry_in	= %D%/entry.in
 
-help		= %D%/cont-help
+help		= %D%/container-usage
 help_in	= %D%/help.in
 
 GENERATED_FILES += \

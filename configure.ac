@@ -38,9 +38,8 @@ _AX_TEXT_TPL_ARG_VAR([contvolumehookdir], ['${datadir}/cont-volume'],
                      [place for per-package volume-mounted hook directories])
 
 
-# Files named '*.txt' in this directory will be printed to standard output
-# when 'cont-help' is run.  Any file put in this directory should be named like
-# COMPONENT_NAME.txt.
+# Files named '*.txt' in this directory will be printed to standard output when
+# 'container-usage' is run.
 _AX_TEXT_TPL_ARG_VAR([contdocdir], ['${datadir}/cont-docs'],
                      [container documentation directory])
 

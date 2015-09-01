@@ -13,8 +13,8 @@ __cont_source_scripts()
 # CONT_SOURCE_HOOKS HOOKDIR [PROJECT]
 # -----------------------------------
 # Source '*.sh' files from the following directories (in this order):
-#   a. @contlayerhookdir@/PROJECT/HOOK/
-#   b. @contvolumehookdir@/PROJECT/HOOK/
+#   a. {{ m.contlayerhookdir }}/PROJECT/HOOK/
+#   b. {{ m.contvolumehookdir }}/PROJECT/HOOK/
 #
 # The PROJECT argument is optional because it may be set globally by
 # $CONT_PROJECT environment variable.  The need for PROJECT argument is
@@ -30,7 +30,7 @@ cont_source_hooks()
     test -z "$hook" && return
     test -n "$2" && project="$2"
 
-    for dir in @contlayerhookdir@ @contvolumehookdir@; do
+    for dir in {{ m.contlayerhookdir }} {{ m.contvolumehookdir }}; do
         dir="$dir/$project/$hook"
         cont_debug2 "loading scripts from $dir"
         __cont_source_scripts "$dir"
@@ -65,8 +65,8 @@ __cont_encode_env()
     local i
     for i in $1
     do
-        eval local val="\$$i"
-        printf ": \${%s=%q}\n" "$i" "$val"
+        eval local val="\$$i"{% raw %}
+        printf ": \${%s=%q}\n" "$i" "$val"{% endraw %}
     done
 }
 
@@ -94,4 +94,4 @@ cont_store_env()
 }
 
 
-__cont_source_scripts "@autoloaddir@"
+__cont_source_scripts "{{ m.autoloaddir }}"

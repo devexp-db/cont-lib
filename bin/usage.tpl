@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # TODO: support API for executable help scripts
-cat @contdocdir@/*.txt 2>/dev/null
+cat {{ macros.contdocdir }}/*.txt 2>/dev/null
 
 cat <<EOF
 

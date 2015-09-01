@@ -1,4 +1,4 @@
-. "@pkgdatadir@/cont-lib.sh"
+. "{{ m.pkgdatadir }}/cont-lib.sh"
 
 # SEMICOLON_SPLIT VAR
 # -------------------

@@ -1,15 +1,8 @@
 # current dir
-/.inst
-/aclocal.m4
-/acinclude.m4
-/autom4te.cache
-/build-aux
-/compile
-/config.guess
-/config.status
-/config.log
+/auto-rules.mk
+/macros.mk
+/output
 
 # general
-*.tar.gz
-Makefile
-Makefile.in
+*.pyc
+*.pyo

@@ -23,13 +23,15 @@ make_helper = $(cont_lib_dir)/make-helper.sh
 
 default_distro=fedora-22-x86_64
 
+DG = dg
+
 distgen_dg = \
 	_gen() { \
 	    distro=$(distro) ; \
 	    mkdir -p $$(dirname $@) || return 1 ; \
 	    test -z "$$distro" && distro=$(default_distro) ; \
 	    echo "  DG       $@" ; \
-	    dg --output "$@" \
+	    $(DG) --output "$@" \
 	       --distro "$$distro.yaml" \
 	       --macros-from "$(cont_lib_dir)" \
 	       $$@ || return 1 ; \

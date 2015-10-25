@@ -6,3 +6,5 @@ CP      $(contvolumehookdir)/README                     share/cont-volume/README
 CP      $(autoloaddir)/README                           share/cont-lib/autoload/README
 DG      $(contlib)/cont-lib.sh                          tpl=share/cont-lib/cont-lib.sh.tpl
 DG      $(contlib)/parser-simple-config.sh              tpl=share/cont-lib/parser-simple-config.sh.tpl
+DG      $(contlib)/parser-simple-macro-config.sh        tpl=share/cont-lib/parser-simple-macro-config.sh.tpl
+CP      $(awkscriptsdir)/simple-macros.awk              awk/simple-macros.awk

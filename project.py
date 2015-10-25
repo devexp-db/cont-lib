@@ -5,6 +5,9 @@ config = {
         # after sourcing the cont-lib.sh.
         'autoloaddir': '$pkgdatadir/autoload',
 
+        # Where are awk scripts installed
+        'awkscriptsdir': '$pkgdatadir/awkscripts',
+
         # Files named '*.txt' in this directory will be printed to standard
         # output when 'container-usage' is run.
         'contdocdir': '$datadir/cont-docs',

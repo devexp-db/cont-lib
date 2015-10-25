@@ -36,9 +36,11 @@ config = {
         # projects.
         'contlib': '$pkgdatadir',
 
-        # Shell snippet to be called from Dockerfile
-        'docker_container_build':
+        # Shell snippets to be called while building container image.
+        'container_build':
             'container-build && rm /usr/bin/container-build',
+        'container_entrypoint': '$bindir/container-entrypoint',
+        'container_start':      '$bindir/container-start',
 
         # Directory under which 'atomic CMD' will mount Host's '/' directory
         # into (privileged) container.
@@ -59,5 +61,10 @@ config = {
         # Atomic commands, should be redefined in dependant project.
         'atomic_install': '',
         'atomic_uninstall': '',
+
+        # Internal macros.
+        'docker_set_default_cmd': 'test -f $container_cmd && ' + \
+                                  'ln -sf $container_cmd $container_start',
+
     }
 }

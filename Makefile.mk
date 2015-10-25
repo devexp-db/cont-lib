@@ -78,7 +78,10 @@ full_deps = $(DESTDIR)$(root_subdir)$(bindir)/container-build
 $(DESTDIR)$(root_subdir)$(bindir)/container-build: $(auto_rules)
 	@echo "  GEN      $@" ; \
 	mkdir -p $$(dirname $@) || exit 1 ; \
-	_f() { $(build_content) \
+	_f() { \
+	  echo 'set -x' ; \
+	  $(build_content) \
+	  echo "$(docker_set_default_cmd)" ; \
 	} ; _f > $@ && chmod +x $@
 
 build_content =

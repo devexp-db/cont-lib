@@ -85,10 +85,15 @@ build_content =
 
 -include $(auto_rules)
 
+.PHONY: all all_pre_hook all_post_hook
 all: $(full_deps)
+all_pre_hook: $(all_pre_hooks)
+all_post_hook: $(all_post_hooks) $(full_deps)
 
 distgen-all: $(auto_rules) $(macros_mk)
+	@$(MAKE) --no-print-directory all_pre_hook
 	@$(MAKE) --no-print-directory all
+	@$(MAKE) --no-print-directory all_post_hook
 
 CLEANFILES = $(DESTDIR) $(auto_rules) $(macros_mk)
 

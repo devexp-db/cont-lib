@@ -1,5 +1,6 @@
 DG      $(bindir)/container-entrypoint                  tpl=bin/entry.tpl chmod=775
 DG      $(bindir)/container-usage                       tpl=bin/usage.tpl chmod=775
+DG      $(bindir)/container-help                        tpl=bin/help.tpl chmod=775
 CP      $(contdocdir)/README                            share/cont-docs/README
 CP      $(contlayerhookdir)/README                      share/cont-layer/README
 CP      $(contvolumehookdir)/README                     share/cont-volume/README

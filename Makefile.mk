@@ -21,7 +21,10 @@ endif
 
 make_helper = $(cont_lib_dir)/make-helper.sh
 
-default_distro=fedora-22-x86_64
+default_distro=fedora-23-x86_64
+ifndef distro
+    distro = $(default_distro)
+endif
 
 DG = dg
 
@@ -29,7 +32,7 @@ distgen_dg = \
 	_gen() { \
 	    distro=$(distro) ; \
 	    mkdir -p $$(dirname $@) || return 1 ; \
-	    test -z "$$distro" && distro=$(default_distro) ; \
+	    test -z "$$distro" && distro=$(distro) ; \
 	    echo "  DG       $@" ; \
 	    $(DG) --output "$@" \
 	       --distro "$$distro.yaml" \
@@ -58,9 +61,9 @@ $(auto_rules): %auto-rules.mk: %cl-manifest $(make_helper)
 $(macros_mk): project.py $(cont_lib_dir)/project.py
 	@echo "  GEN      $@" ; \
 	distro="$(distro)" ; \
-	test -z "$$distro" && disto=$(default_distro) ; \
+	test -z "$$distro" && disto=$(distro) ; \
 	dg --output $@ \
-	   --distro "$(default_distro).yaml" \
+	   --distro "$(distro).yaml" \
 	   --macros-from "$(cont_lib_dir)" \
 	   --template makefile-macros.tpl
 

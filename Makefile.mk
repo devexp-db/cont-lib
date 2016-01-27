@@ -33,6 +33,7 @@ distgen_dg = \
 	    echo "  DG       $@" ; \
 	    $(DG) --output "$@" \
 	       --distro "$$distro.yaml" \
+	       --container docker \
 	       --macros-from "$(cont_lib_dir)" \
 	       $$@ || return 1 ; \
 	    chmod 644 "$@" ; \

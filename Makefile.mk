@@ -44,6 +44,10 @@ endif
 
 DG = dg
 
+dg_general_options = \
+	--macros-from "$(cont_lib_dir)" \
+	--macro "docker_main_tag $(docker_main_tag)"
+
 distgen_dg = \
 	_gen() { \
 	    distro=$(distro) ; \
@@ -53,7 +57,7 @@ distgen_dg = \
 	    $(DG) --output "$@" \
 	       --distro "$$distro.yaml" \
 	       --container docker \
-	       --macros-from "$(cont_lib_dir)" \
+	       $(dg_general_options) \
 	       $$@ || return 1 ; \
 	    chmod 644 "$@" ; \
 	} ; \
@@ -78,10 +82,9 @@ $(macros_mk): project.py $(cont_lib_dir)/project.py
 	@echo "  GEN      $@" ; \
 	distro="$(distro)" ; \
 	test -z "$$distro" && disto=$(distro) ; \
-	dg --output $@ \
+	$(DG) --output $@ \
 	   --distro "$(distro).yaml" \
-	   --macros-from "$(cont_lib_dir)" \
-	   --macro "docker_main_tag $(docker_main_tag)" \
+	   $(dg_general_options) \
 	   --template makefile-macros.tpl
 
 auto_rules_generator = \

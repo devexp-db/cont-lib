@@ -26,6 +26,22 @@ ifndef distro
     distro = $(default_distro)
 endif
 
+ifndef docker_main_tag_check
+    docker_main_tag_check=false
+endif
+
+ifndef docker_main_tag
+    docker_main_tag = <THIS_IMAGE>
+endif
+docker_default_main_tag = <THIS_IMAGE>
+
+ifndef docker_main_tag_hint
+    docker_main_tag_hint = \
+	echo ; \
+	echo " !! Use 'make docker_main_tag=IMAGE_TAG' !!" ; \
+	echo
+endif
+
 DG = dg
 
 distgen_dg = \
@@ -65,6 +81,7 @@ $(macros_mk): project.py $(cont_lib_dir)/project.py
 	dg --output $@ \
 	   --distro "$(distro).yaml" \
 	   --macros-from "$(cont_lib_dir)" \
+	   --macro "docker_main_tag $(docker_main_tag)" \
 	   --template makefile-macros.tpl
 
 auto_rules_generator = \
@@ -98,6 +115,12 @@ all_pre_hook: $(all_pre_hooks)
 all_post_hook: $(all_post_hooks) $(full_deps)
 
 distgen-all: $(auto_rules) $(macros_mk)
+	@if $(docker_main_tag_check); then \
+	  if test "$(docker_default_main_tag)" = "$(docker_main_tag)"; then \
+	    $(docker_main_tag_hint) ; \
+	    false ; \
+	  fi ; \
+	fi
 	@$(MAKE) --no-print-directory all_pre_hook
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory all_post_hook

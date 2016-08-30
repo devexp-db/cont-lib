@@ -21,7 +21,7 @@ endif
 
 make_helper = $(cont_lib_dir)/make-helper.sh
 
-default_distro=fedora-23-x86_64
+default_distro=fedora-24-x86_64
 ifndef distro
     distro = $(default_distro)
 endif
